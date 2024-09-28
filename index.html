@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amada Coco</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFE4E1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #FF69B4;
+        }
+        #envelope {
+            background-color: #FFC0CB;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #envelope:hover {
+            transform: scale(1.05);
+        }
+        #letter {
+            display: none;
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+        }
+        #nextButton, #passwordSubmit, .icon, #endButton {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #nextButton:hover, #passwordSubmit:hover, .icon:hover, #endButton:hover {
+            background-color: #FF1493;
+        }
+        #passwordPage, #iconsPage, #finalPage {
+            display: none;
+            text-align: center;
+        }
+        .passwordButton {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+        }
+        #message {
+            color: #FF69B4;
+            margin-top: 20px;
+        }
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="envelope">Para: Coco, De: Andrés</div>
+
+    <div id="letter">
+        <h2>La Chica de Mis Sueños</h2>
+        <pre>
+Esmeralda viva, luz de primavera,
+Sus ojos son faros en mi oscuridad.
+Mirada profunda, alma verdadera,
+Guían mis pasos con serenidad.
+Su risa, cascada de dulce armonía,
+Resuena en mi pecho como un dulce canto.
+Su voz es la brisa que anuncia el día,
+Disipando sombras, secando mi llanto.
+Cual lienzo en blanco era mi existencia,
+Ella, los colores que dan vida al cuadro.
+Su esencia completa mi propia esencia,
+Como luna llena en cielo estrellado.
+Ángel terrenal de gracia infinita,
+Su bondad transforma todo lo que toca.
+En el jardín yermo de mi alma marchita,
+Ella es primavera que en flor se desboca.
+La chica de mis sueños, realidad tangible,
+Mitad de mi ser que me hace ser entero.
+Su amor es un faro, constante, visible,
+Que ilumina el rumbo de este marinero.
+        </pre>
+        <button id="nextButton">Next</button>
+    </div>
+
+    <div id="passwordPage">
+        <h2>Ingresa la contraseña</h2>
+        <div id="passwordButtons"></div>
+        <button id="passwordSubmit">Enviar</button>
+        <p id="message"></p>
+    </div>
+
+    <div id="iconsPage">
+        <button class="icon" id="tulipIcon">🌷</button>
+        <button class="icon" id="hourglassIcon">⏳</button>
+        <button class="icon" id="familyIcon">👨‍👩‍👧‍👦</button>
+        <div id="iconContent"></div>
+        <button id="endButton">The End</button>
+    </div>
+
+    <div id="finalPage">
+        <h2>Espero te haya gustado</h2>
+        <p>Eres extraordinaria, siempre serás tuya como tú siempre mía</p>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const letter = document.getElementById('letter');
+        const nextButton = document.getElementById('nextButton');
+        const passwordPage = document.getElementById('passwordPage');
+        const passwordButtons = document.getElementById('passwordButtons');
+        const passwordSubmit = document.getElementById('passwordSubmit');
+        const message = document.getElementById('message');
+        const iconsPage = document.getElementById('iconsPage');
+        const iconContent = document.getElementById('iconContent');
+        const endButton = document.getElementById('endButton');
+        const finalPage = document.getElementById('finalPage');
+
+        let password = '';
+        const correctPassword = '13082024';
+
+        envelope.addEventListener('click', () => {
+            envelope.style.display = 'none';
+            letter.style.display = 'block';
+        });
+
+        nextButton.addEventListener('click', () => {
+            letter.style.display = 'none';
+            passwordPage.style.display = 'block';
+        });
+
+        for (let i = 0; i <= 9; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.classList.add('passwordButton');
+            button.addEventListener('click', () => {
+                password += i;
+                message.textContent = '* '.repeat(password.length);
+            });
+            passwordButtons.appendChild(button);
+        }
+
+        passwordSubmit.addEventListener('click', () => {
+            if (password === correctPassword) {
+                passwordPage.style.display = 'none';
+                iconsPage.style.display = 'block';
+            } else {
+                message.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
+                password = '';
+            }
+        });
+
+        document.getElementById('tulipIcon').addEventListener('click', () => {
+            iconContent.innerHTML = `
+                <div style="background-color: #FFFFFF; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3>Querida mía:</h3>
+                    <p>En cada latido de mi corazón resuena tu nombre. Eres el sol que ilumina mis días y la luna que vela mis noches. Tu presencia en mi vida es un regalo que atesoro con cada respiro.</p>
+                    <p>Gracias por ser mi refugio en la tormenta, mi sonrisa en los momentos grises. Tu amor me eleva, me inspira a ser mejor. Con tu mano en la mía, siento que puedo conquistar el mundo.</p>
+                    <p>Agradezco cada instante a tu lado, cada risa compartida, cada mirada cómplice. Has llenado mi existencia de color y significado. Tu bondad y tu fuerza me asombran día tras día.</p>
+                    <p>Quiero que sepas que mi amor por ti es infinito, inquebrantable. Eres mi compañera, mi confidente, mi todo. Gracias por hacerme sentir completo, por ser el hogar al que siempre quiero volver.</p>
+                    <p>Te amo más allá de las palabras, más allá del tiempo. Eres y serás siempre el amor de mi vida.</p>
+                    <p>Eternamente tuyo.</p>
+                </div>
+            `;
+        });
+
+        document.getElementById('hourglassIcon').addEventListener('click', () => {
+            const startDate = new Date('2024-08-13');
+            const endDate = new Date('2024-09-28');
+            const timeDiff = endDate - startDate;
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+            iconContent.innerHTML = `
+                <div style="background-color: #FFFFFF; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3>¿Cuánto tiempo hemos estado juntos?</h3>
+                    <div id="timer">${days} días, ${hours} horas y ${minutes} minutos</div>
+                </div>
+            `;
+        });
+
+        document.getElementById('familyIcon').addEventListener('click', () => {
+            iconContent.innerHTML = `
+                <div style="background-color: #FFFFFF; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3>Nuestro Futuro Juntos</h3>
+                    <p>Mi amor, quiero que sepas que mi deseo más profundo es construir un futuro contigo. Cada día a tu lado me hace soñar con una vida llena de amor, risas y aventuras compartidas. Me comprometo a estar siempre a tu lado, apoyándote en cada paso que des, celebrando tus triunfos y siendo tu roca en los momentos difíciles.</p>
+                    <p>Estoy increíblemente orgulloso de ti, de tu fuerza, tu determinación y tu corazón bondadoso. Eres una mujer extraordinaria y me siento honrado de caminar junto a ti en esta vida. Juntos, sé que podemos enfrentar cualquier desafío y crear un hogar lleno de amor y felicidad.</p>
+                    <p>Te amo más de lo que las palabras pueden expresar y estoy emocionado por todos los momentos maravillosos que nos esperan en nuestro futuro juntos.</p>
+                </div>
+            `;
+        });
+
+        endButton.addEventListener('click', () => {
+            iconsPage.style.display = 'none';
+            finalPage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
